@@ -1,0 +1,49 @@
+.env
+__pycache__/
+*.pyc
+.pytest_cache/
+reports/build/
+
+# Credentials and local environments
+.env.*
+!.env.example
+.venv/
+venv/
+**/.deps/
+**/.runtime/
+
+# Private source corpus, archives and local reports
+/To-ljh/
+/SPARK_selected3_seed_shareable_20260807/
+/reports/
+/verification/
+/verification-tests.txt
+/SPARK统一化学世界模型设计训练与成果_20260807.md
+/SPARK最终实验数据位置与完整性核验说明.md
+*.pdf
+*.pptx
+*.xlsx
+*.zip
+
+# Generated research memory and outputs
+**/outputs/
+**/results/
+**/extractions/
+**/evidence/
+/temporal_runs/
+*.sqlite
+*.sqlite3
+*.db
+*.log
+
+# Optional third-party repositories and weights
+/spark_agentic_harness/external_conductivity/HPG/
+/spark_agentic_harness/external_conductivity/SCAN/
+/spark_agentic_harness/external_conductivity/Chem-prop-pred/
+/spark_agentic_harness/external_conductivity/delivery/
+/spark_agentic_harness/external_conductivity/ppt_build/
+*.pt
+*.pth
+*.bin
+*.ckpt
+*.npz

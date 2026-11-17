@@ -1,0 +1,45 @@
+本地文献配方 → HPG图构建 → 电导率预测实验
+
+本轮采用自己的本地文献库中三篇论文的无填料PEO对照配方。原始PDF、页码、来源哈希、抽取字段与图输入分别保存。这里的三个样本属于同一聚合物家族，不代表三个新聚合物结构。
+
+1. ACS Nano 2024，DOI 10.1021/acsnano.4c01257。
+   原文第10页PEO Mw=6,000,000；第11页PEO 1 g、LiTFSI 0.41 g。第7页PEO对照电导率1.72e-5 S/cm，30°C由相邻叙述与Figure 6上下文确认。
+   HPG预测30°C为1.7077e-4 S/cm，高估9.93倍，绝对log10误差0.997。
+2. Small 2023，DOI 10.1002/smll.202301275。
+   第10页Mw=6,000,000，LiClO4，EO:Li=20:1；第4页PEO-0为6.79e-7 S/cm，数值温度未明确关联。
+   模型在假设25/30°C时预测1.3730e-5/2.3608e-5 S/cm。该温度区间仅是查询情景，不纳入严格同温度误差统计。
+3. ACS Applied Energy Materials 2023，DOI 10.1021/acsaem.3c00371。
+   第3页Mw约1,000,000，LiTFSI，EO:Li=16:1，明确描述无PAN/MOF的PEO对照制备。
+   模型30/60°C预测1.6824e-4/1.8281e-3 S/cm。第6页给出的数字属于PAN或PAN@MOF复合物，未移用作PEO对照标签。
+
+构图方法
+PEO标准重复单元采用人工审核的[R]CCO[Q]，不是从论文名字自由生成SMILES。片段内原子和化学键、原子到片段的层级边，以及带重复次数的片段连接共同构成HPG图。重复次数使用round(Mw/44.053)近似，Mw不是Mn，此近似不等于实测聚合度。盐沿用作者的阴离子图编码，质量换算使用完整锂盐摩尔质量。EO:Li使用44.053 g/mol的EO重复单元换算质量分数，不使用整条链的Mw。溶剂按制膜工艺处理，残余溶剂未量化。
+
+已完成的实验
+DeepSeek已完成3篇指定页面抽取，18条非空字段引用全部通过原文连续字符串校验，并经语义核对。首篇首次响应因6000 token上限截断，提高至20000后重试成功，原失败记录仍保留。
+verify_llm_bridge.py已执行成功：3组LLM抽取的分子量、盐种及配比均与原文核对记录一致，实际重新构图并完成12次预测，结果保存在llm_bridge_predictions.json。LLM未自动建立PEO重复单元SMILES，使用的是经过审核的结构模板。ACS Nano的30°C为人工阅读段落上下文补充，LLM原始温度字段保留null。
+run_experiment.py共24次预测：每个配方4个温度、1个基准、2个重复次数扰动、1个重复单元表示对照。其中基准与温度扫描有重复查询，不能当24个独立样本。
+17项检查全部通过：3个图有限值、3个质量分数归一化、3个节点编号置换不变性、4个作者缓存图逐张量完全重建、缺失比例拒绝、未表示MOF组分拒绝、未知片段连接拒绝、质量配比与EO配比换算一致。
+节点编号置换引起的最大log10电导率差约1.10e-7。CCO/OCC表示差异也在浮点数误差水平。
+重复次数减半/加倍在两个600万Mw样本上几乎不改变输出，在100万Mw样本上仅有小变化。这说明这些PEO查询中模型对该参数的响应较弱，不代表真实分子量不影响电导率。
+三种配方的预测均随25→60°C增加。这是模型响应检查，并非新增实测数据。
+
+运行入口（从独立项目根目录运行）
+python spark_agentic_harness/external_conductivity/literature_graph_experiment/run_experiment.py
+python spark_agentic_harness/external_conductivity/literature_graph_experiment/extract_cases.py
+python spark_agentic_harness/external_conductivity/literature_graph_experiment/verify_llm_bridge.py
+第一步只需本地模型和依赖。第二步使用根目录.env中的LLM配置，发送指定论文页面；保存原始回答、引用校验及token用量。第三步将审核后的LLM组分字段确定性转换成图输入，检查与本地原文核验记录一致，重新执行12个温度查询。实测电导率不作为模型输入。
+
+结果位置
+results/literature_records.json：人工原文核对记录。
+extractions/*_control.json：LLM结构化回答及原文引用校验。
+results/*_source_pages.json：本地PDF指定页面文本。
+results/*_graph.json：图规格、配比、来源与假设。
+results/*_polymer_graph.npz：实际节点、边和特征张量。
+results/predictions.csv：24次本地图预测。
+results/validation_checks.json：17项检查。
+results/matched_measurement.json：唯一明确同温度数值对照。
+results/llm_bridge_predictions.json：成功运行桥接脚本后保存的12次LLM抽取配方预测。
+
+在harness中的使用
+知识记忆保留原文实测值与页码；图构建工具接收审核后的组分、结构、配比；HPG工具返回模型预测和模型版本。推荐阶段分别读取实测证据与预测证据。当前结果标记eligible_for_ranking=false，因为这些文献对照暴露了明显偏差。下一步应扩大同温度实测对照集、核查训练数据重叠、校准PEO体系，再评估结构更复杂的候选。填料、交联、结晶度与制膜历史尚未在本适配器中完整表示。

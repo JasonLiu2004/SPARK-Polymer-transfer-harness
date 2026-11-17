@@ -1,0 +1,117 @@
+组成与结构驱动的电导率估计：调研与真实测试
+日期：2026-11-17
+
+从文献结构到电解质候选筛选
+文献中的化学结构和配方能够进入电导率预测，为缺少实测记录的候选材料提供可计算的筛选依据。本次调研确立了两条重点路线：使用HPG-GAT公开权重开展快速估计，复现ChemArr的结构与温度联合建模，并通过分子模拟验证新结构的传导机制。
+实测支持这一方向：HPG公开验证集的58/78条预测落在实测两倍范围内；在8277条公开记录的自建基线实验中，加入聚合物与盐结构使随机记录拆分的MAE降低约52%，配方隔离拆分降低约41%。按未见聚合物图隔离的实验进一步界定了任务：配方优化采用快速预测，新结构发现引入模拟和实验验证。
+Harness的核心作用是把文献证据组织成结构明确、配比可换算、条件可对齐的样品，再选择适合的性质模型。以下按工具选择、实测证据和接入方案展开，并在各实验中说明评价条件。
+
+一、工具及可用程度
+1. HPG-GAT，Chemical Engineering Journal，2025
+   输入：最多六种组分的分子/层次聚合物图、组分比例、温度。
+   输出：log10(S/cm)，可还原为S/cm。
+   公开源码、聚合物图缓存、权重，已在本机CPU实际推理。
+   https://github.com/spark8ku/HPG
+   https://www.sciencedirect.com/science/article/pii/S1385894725076673
+2. ChemArr / Chem-prop-pred，ACS Central Science，2023
+   输入：聚合物图、盐图、分子量、盐浓度、温度。
+   输出：具有Arrhenius读出约束的电导率估计。
+   公开源码和实验数据。在本次检查的主仓库树中未找到现成预测权重，需要训练/进一步寻找作者发布包。
+   本次下载并检查数据，训练了自己的指纹基线，没有复现ChemArr神经网络。
+   https://github.com/learningmatter-mit/Chem-prop-pred
+   https://github.com/learningmatter-mit/ChemArr
+   https://doi.org/10.1021/acscentsci.2c01123
+3. TransPolymer，npj Computational Materials，2023
+   预训练聚合物SMILES Transformer，电导率任务还需要下游微调。
+   预训练编码器不等于可直接返回电导率的预测头。本次未执行。
+   https://github.com/ChangwenXu98/TransPolymer
+   https://doi.org/10.1038/s41524-023-01016-5
+4. ion_predictor
+   有机液体/聚合物电解质数据库、组成预测代码和GUI。是HPG数据来源之一。
+   原相关论文10.1021/jacs.9b11442，仓库提示后续模型与数据和论文略有差异。本次检查仓库，未运行。
+   https://github.com/KanHatakeyama/ion_predictor
+5. HTP-MD / PolyGen
+   聚合物结构、盐和模拟条件，学习MD产生的输运标签，或生成聚合物并用MD验证。
+   模拟标签精度不能直接当作实验膜精度。本次未执行。
+   https://github.com/TRI-AMDD/htp_md
+   https://github.com/TRI-AMDD/PolyGen
+   https://doi.org/10.1038/s41524-024-01470-9
+6. PEMD，Digital Discovery，2026
+   输入：聚合物结构、聚合度/链数、盐及配比、温度和力场等。
+   建模、分子动力学、轨迹分析，可计算扩散、离子电导率、迁移数和配位等。
+   需要外部模拟引擎及充分采样。本次未启动新的聚合物MD。
+   https://github.com/HouGroup/PEMD
+   https://doi.org/10.1039/D5DD00454C
+7. SCAN，Nature Computational Science，2026
+   液态电解质的盐、溶剂、配方比例、浓度、温度等，预测电导率。
+   本次运行公开fold1权重，完成2661条输入的推理连通性测试。
+   属于液相模型，不能直接用于聚合物膜。
+   https://github.com/PEESEgroup/SCAN
+   https://doi.org/10.1038/s43588-026-00955-5
+8. FragForm，Advanced Science，2026
+   片段与组成感知的液态电解质模型。可借鉴混合物表示，未执行。
+   https://github.com/Xiangwen-Wang/FragForm
+   https://doi.org/10.1002/advs.202521575
+9. A unified predictive and generative solution for liquid electrolyte formulation，Nature Machine Intelligence，2026
+   液态配方的统一预测与生成，关注组分排列不变性及温度/浓度关系。
+   本次审阅论文信息，没有部署或确认可直接使用的在线API。
+   https://doi.org/10.1038/s42256-025-01173-w
+10. CHGNet + MD
+   晶体结构输入，势能/力驱动MD，再由轨迹分析扩散和电导。
+   适合无机固态电解质方向，不是聚合物膜的一步电导率预测器。本次未执行。
+   https://github.com/CederGroupHub/chgnet
+   https://arxiv.org/abs/2302.14231
+11. Chemically informed structural descriptors，ACS Omega，2026
+   6270个MD体系的描述符模型，预测扩散/电导等。注意标签来自MD。本次未执行。
+   https://doi.org/10.1021/acsomega.6c09949
+
+二、本次真实实验
+A. HPG公开模型复算
+   作者数据：6647行，tags==2的78行为验证集，165个聚合物图。
+   MAE=0.234936 log10(S/cm)，RMSE=0.326798，R2=0.876428。
+   58/78（74.36%）落在实测的2倍范围，76/78（97.44%）在10倍范围。
+   作者训练脚本使用这组验证集选择最优权重，因此这些结果是公开验证集复算，不能称为独立盲测。
+   本次保留作者组分编码、比例换算及归一化。配比语义仍需额外核验：例如首条PEO记录的mol_ratio=20/1，而Mw1约575523；作者代码直接用Mw乘摩尔比。此时需要核实原文比例指整链还是重复单元，不能把该编码自动当作新配方的真实质量分数。
+   样例：作者数据中的PEO/LiDTFSI，100℃实测0.0014 S/cm，预测0.001528 S/cm；60℃实测0.00038，预测0.000217。
+   单独改变温度的查询仅用于观察模型响应，不作为新的准确率验证。
+   结果：results/hpg_summary.json、hpg_validation_predictions.csv、hpg_temperature_sensitivity.csv。
+
+B. 我们新增的结构泛化实验
+   使用ChemArr公开clean_train_data.csv的10114行数据，保留8277条输入完整且结构可解析的记录。
+   127种标准化聚合物图、1438种配方。配方定义为聚合物图+盐图+分子量+盐浓度。
+   模型：ExtraTrees，120棵树，min_samples_leaf=2，max_features=0.8。
+   对照输入：log10分子量、盐浓度、1000/T。结构模型再加入聚合物和盐各256位Morgan指纹。
+   三种拆分，各使用17/29/43三个随机种子，共18次训练。
+   MAE，单位log10(S/cm)，三次均值±样本标准差：
+   随机记录拆分：仅条件0.633±0.014，结构+条件0.303±0.011。
+   配方隔离拆分：仅条件0.763±0.005，结构+条件0.453±0.039。
+   聚合物图隔离：仅条件1.242±0.289，结构+条件1.283±0.389。
+   结构信息改善了已见化学空间内的预测，但本基线在新聚合物图上没有稳定收益。1.283 log误差对应约19倍的几何平均倍率偏差，不能支持精确筛选。
+   每次分组保留20%的组，记录数量不固定。聚合物隔离的测试记录为4671、4292、839条。
+   按图身份隔离不是按化学家族隔离。公开CSV没有文献ID，未排除跨文献关联。Cu/Au端点标记沿用作者表示。
+   这是我们的新基线实验，不是ChemArr/HPG的统一榜单，也没有训练ChemArr网络。
+   结果：results/structure_baseline_summary.json、baseline_aggregate.csv、18个逐条预测CSV。
+
+C. SCAN公开权重推理
+   2661条输入，native k MAE=0.316463，RMSE=0.686604，R2=0.972919。
+   作者create_model默认4个routing heads，公开checkpoint为9个；根据权重形状构造同类网络后，严格加载成功。
+   复建作者StratifiedKFold的首折。权重与折的对应关系未独立认证，native k与物理单位映射尚未完成独立核对，因此仅计为推理连通性测试。
+   不将这些指标与HPG的log10(S/cm)误差比较，不将SCAN用于聚合物排序。
+   结果：results/scan_summary.json、scan_fold1_predictions.csv。
+
+三、如何进入我们的Harness
+   文献抽取应生成样品级记录：聚合物结构及端基/拓扑、盐结构、配比及其基准、分子量、温度、物态、工艺和原文证据。
+   先核验条件和适用域，再路由：已覆盖的聚合物配方交给HPG/ChemArr，液相子问题可交给SCAN，陌生结构和重要候选交给PEMD/MD验证。
+   统一工具接口建议输入candidate、conditions、requested_property；输出value、unit、origin、model_version、input_hash、applicability、uncertainty、source和status。
+   未校准不确定性返回null，缺必要输入返回needs_input。实测值和预测值分开存储，预测不能写回为文献事实。
+   推荐环节联合电导率、稳定性、可合成性和证据等级。RSI通过固定的结构/文献隔离评测来接受或拒绝新策略。
+   本次已经完成独立测试脚本和可追溯结果；上述新模型尚未注册到总控工具表，PPT中接口与路由属于接入设计。
+
+四、运行
+   在To-ljh目录执行以下命令，不需要LLM或API key：
+   python spark_agentic_harness/external_conductivity/test_public_hpg.py
+   python spark_agentic_harness/external_conductivity/test_public_scan.py
+   python spark_agentic_harness/external_conductivity/test_structure_baseline.py
+   当前在本机Python3.11/Torch2.2 CPU测试，RDKit/DGL等附加依赖位于external_conductivity/.deps。
+   这是当前工作站的可重跑环境，未声称其他电脑零配置。
+   下载来源、SHA256及失败请求记录见downloads_*.json。公开源代码和许可证保留在各自目录。

@@ -1,0 +1,26 @@
+[
+  {
+    "url": "https://raw.githubusercontent.com/PEESEgroup/SCAN/main/model/route_model.py",
+    "path": "spark_agentic_harness\\external_conductivity\\SCAN\\model\\route_model.py",
+    "bytes": 3239,
+    "sha256": "b8af6e75dd15fcf65a81211b40f517a60e2fa5d621b0b02a158249f22c161bfc"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/PEESEgroup/SCAN/main/model/train.py",
+    "path": "spark_agentic_harness\\external_conductivity\\SCAN\\model\\train.py",
+    "bytes": 3935,
+    "sha256": "b37d4ebff10ac08d5cd0f494026d02d0e703aee8442d658e1b7b2d9a18a37149"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/PEESEgroup/SCAN/main/data/calisol.csv",
+    "path": "spark_agentic_harness\\external_conductivity\\SCAN\\data\\calisol.csv",
+    "bytes": 1638801,
+    "sha256": "0cd58402b28d8578eff5566761e6a59e741bcfb9c8ec4c5e3b6e4513485f49e2"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/spark8ku/HPG/main/data/polyG.pt",
+    "path": "spark_agentic_harness\\external_conductivity\\HPG\\data\\polyG.pt",
+    "bytes": 80770,
+    "sha256": "3a25a5359220b111e813b73f02eddcdea1856032fa070d46f3cceecbacfddebd"
+  }
+]

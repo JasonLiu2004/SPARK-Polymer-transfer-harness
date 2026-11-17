@@ -1,0 +1,163 @@
+{
+  "sha": "39b0c16f70c4142b32a67531a093718c767ad43d",
+  "url": "https://api.github.com/repos/learningmatter-mit/Chem-prop-pred/git/trees/39b0c16f70c4142b32a67531a093718c767ad43d",
+  "tree": [
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f10e83abc6a72c3c71b7c720cf98f1e8d6b07eb3",
+      "size": 1859,
+      "url": "https://api.github.com/repos/learningmatter-mit/Chem-prop-pred/git/blobs/f10e83abc6a72c3c71b7c720cf98f1e8d6b07eb3"
+    },
+    {
+      "path": ".gitmodules",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "85ce20bd23ed3fd162ef35834d3597e6303054da",
+      "size": 91,
+      "url": "https://api.github.com/repos/learningmatter-mit/Chem-prop-pred/git/blobs/85ce20bd23ed3fd162ef35834d3597e6303054da"
+    },
+    {
+      "path": "ChemArr",
+      "mode": "160000",
+      "type": "commit",
+      "sha": "9c296b4941a5422e2d931707dc01895db228e60d"
+    },
+    {
+      "path": "LICENSE",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0022b7ed8dbe32b016b8fad21dd0a0b005dbc2af",
+      "size": 1078,
+      "url": "https://api.github.com/repos/learningmatter-mit/Chem-prop-pred/git/blobs/0022b7ed8dbe32b016b8fad21dd0a0b005dbc2af"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "55e01bfe57689084272727515d40c31ea9476430",
+      "size": 2712,
+      "url": "https://api.github.com/repos/learningmatter-mit/Chem-prop-pred/git/blobs/55e01bfe57689084272727515d40c31ea9476430"
+    },
+    {
+      "path": "chemproppred",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "e8d916328966dec0016b6bb0f812588b93827dd2",
+      "url": "https://api.github.com/repos/learningmatter-mit/Chem-prop-pred/git/trees/e8d916328966dec0016b6bb0f812588b93827dd2"
+    },
+    {
+      "path": "chemproppred/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8b7d9d1b3955952b41415201363f63f58d09fdd3",
+      "size": 87,
+      "url": "https://api.github.com/repos/learningmatter-mit/Chem-prop-pred/git/blobs/8b7d9d1b3955952b41415201363f63f58d09fdd3"
+    },
+    {
+      "path": "chemproppred/make_balanced_train.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7e65f6604ee10ba9238b29d65174ad1605e9aa50",
+      "size": 5939,
+      "url": "https://api.github.com/repos/learningmatter-mit/Chem-prop-pred/git/blobs/7e65f6604ee10ba9238b29d65174ad1605e9aa50"
+    },
+    {
+      "path": "chemproppred/make_screen_data.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d275acbf852d17e7a8b7c0087f267724df832128",
+      "size": 2029,
+      "url": "https://api.github.com/repos/learningmatter-mit/Chem-prop-pred/git/blobs/d275acbf852d17e7a8b7c0087f267724df832128"
+    },
+    {
+      "path": "chemproppred/screen_polys.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bfc15bbcefca68bd35166aedfb891b0d99066669",
+      "size": 2553,
+      "url": "https://api.github.com/repos/learningmatter-mit/Chem-prop-pred/git/blobs/bfc15bbcefca68bd35166aedfb891b0d99066669"
+    },
+    {
+      "path": "chemproppred/utils.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6f776d9fd4dec3d0c6ecf42977c431039d0a18d6",
+      "size": 8767,
+      "url": "https://api.github.com/repos/learningmatter-mit/Chem-prop-pred/git/blobs/6f776d9fd4dec3d0c6ecf42977c431039d0a18d6"
+    },
+    {
+      "path": "data",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "eca638487f34a4d601a627bb467144c8f3112f78",
+      "url": "https://api.github.com/repos/learningmatter-mit/Chem-prop-pred/git/trees/eca638487f34a4d601a627bb467144c8f3112f78"
+    },
+    {
+      "path": "data/PolyInfo_8salts.csv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f615ea61358ba61f78b7c9c0e5ca2566bce5593a",
+      "size": 1833421,
+      "url": "https://api.github.com/repos/learningmatter-mit/Chem-prop-pred/git/blobs/f615ea61358ba61f78b7c9c0e5ca2566bce5593a"
+    },
+    {
+      "path": "data/PolymerElectrolyteData.csv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "67c6d8c7a58aa5ee5d4ccf98d495c856cd94c81c",
+      "size": 6137844,
+      "url": "https://api.github.com/repos/learningmatter-mit/Chem-prop-pred/git/blobs/67c6d8c7a58aa5ee5d4ccf98d495c856cd94c81c"
+    },
+    {
+      "path": "data/clean_train_data.csv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "762ad4238e218ce8b0803b1d2fd6bfd90428514c",
+      "size": 1124553,
+      "url": "https://api.github.com/repos/learningmatter-mit/Chem-prop-pred/git/blobs/762ad4238e218ce8b0803b1d2fd6bfd90428514c"
+    },
+    {
+      "path": "data/polyinfo_5salts_4conc.csv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "86ead8de91aa5e79ecf7f9f1dd186a6bc74a85bb",
+      "size": 3223157,
+      "url": "https://api.github.com/repos/learningmatter-mit/Chem-prop-pred/git/blobs/86ead8de91aa5e79ecf7f9f1dd186a6bc74a85bb"
+    },
+    {
+      "path": "requirements.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2c1bf9e4f343a27279b4628bf58505c67ca85644",
+      "size": 40,
+      "url": "https://api.github.com/repos/learningmatter-mit/Chem-prop-pred/git/blobs/2c1bf9e4f343a27279b4628bf58505c67ca85644"
+    },
+    {
+      "path": "setup.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2c0687279561d8523b0dd76651d31db4b1f6ceee",
+      "size": 780,
+      "url": "https://api.github.com/repos/learningmatter-mit/Chem-prop-pred/git/blobs/2c0687279561d8523b0dd76651d31db4b1f6ceee"
+    },
+    {
+      "path": "train_and_plot_cv_models.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1c9b172ab21cd6290c240182d64b0f423e6b99ae",
+      "size": 5672,
+      "url": "https://api.github.com/repos/learningmatter-mit/Chem-prop-pred/git/blobs/1c9b172ab21cd6290c240182d64b0f423e6b99ae"
+    },
+    {
+      "path": "train_pred_polyinfo.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e7792e0a24e73e2b48ce8d85b1bca5bd0eaeef57",
+      "size": 3582,
+      "url": "https://api.github.com/repos/learningmatter-mit/Chem-prop-pred/git/blobs/e7792e0a24e73e2b48ce8d85b1bca5bd0eaeef57"
+    }
+  ],
+  "truncated": false
+}

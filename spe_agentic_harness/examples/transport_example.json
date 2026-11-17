@@ -1,0 +1,16 @@
+{
+  "method": "nernst_einstein",
+  "candidate": {
+    "name": "Synthetic transport example (not a real material prediction)",
+    "temperature_K": 300,
+    "input_origin": "test_fixture",
+    "sources": ["Artificial inputs for checking units and tool execution"]
+  },
+  "transport": {
+    "complete_mobile_species": true,
+    "species": [
+      {"name": "Li+", "charge_number": 1, "concentration_mol_L": 1, "diffusion_m2_s": 1e-11, "source": "Artificial test input at 300 K"},
+      {"name": "anion", "charge_number": -1, "concentration_mol_L": 1, "diffusion_m2_s": 2e-11, "source": "Artificial test input at 300 K"}
+    ]
+  }
+}

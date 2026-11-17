@@ -1,0 +1,21 @@
+{
+  "objective": "Discover polymer-based solid electrolyte candidates for lithium batteries through condition-aware transfer of ionic-transport mechanisms.",
+  "queries": [
+    "solid polymer electrolyte lithium ion transport",
+    "polymerized ionic liquid ion transport decoupling",
+    "single ion conducting polymer electrolyte",
+    "polymer ionogel ionic conductivity",
+    "polyether polymer segmental relaxation ion transport",
+    "polymer ether coordination amorphous",
+    "polymer low glass transition segmental mobility",
+    "polymer free volume frustrated packing",
+    "polymer zwitterionic dielectric constant"
+  ],
+  "polymer_terms": ["polymer", "polyether", "polyethylene oxide", "poly(ethylene oxide)", "polyelectrolyte", "ionogel", "hydrogel", "polyionic", "poly(ionic liquid)", "ionomer"],
+  "transport_terms": ["ionic conduct", "ion conduct", "ion transport", "ionic transport", "ion mobility", "ionic mobility", "cation transport", "lithium transport", "proton conduct", "sodium transport", "single-ion", "single ion", "ion diffus", "ionic diffus", "electrolyte"],
+  "structural_terms": ["ether", "carbonyl", "coordination", "zwitterion", "dielectric", "segmental", "glass transition", "amorphous", "free volume", "frustrated packing", "low crystallinity", "reduced crystallinity"],
+  "battery_terms": ["battery", "batteries", "solid polymer electrolyte", "solid-state electrolyte", "solid state electrolyte"],
+  "conditional_terms": ["hydrogel", "aqueous", "water", "proton", "sodium", "ionogel", "plasticizer", "plasticiser", "gel electrolyte"],
+  "exclude_types": ["review", "editorial", "paratext"],
+  "screening_policy": "Include polymer systems with either transport evidence or structural/property clues. Structural hits are hypotheses, not established mechanisms. Polymer papers without these keywords go to manual review. Never infer suitability or novelty from keyword matches."
+}

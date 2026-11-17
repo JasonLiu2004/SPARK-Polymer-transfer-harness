@@ -1,0 +1,37 @@
+时间分窗聚合物跨领域发现 Harness
+
+主流程：早期广泛检索 → LLM提取聚合物结构/性质及迁移假设 → 潜力评分 → 冻结排名 → 后期电解质文献检索 → 结构与机制分别匹配 → 回溯验证报告。
+默认2015—2019年发现，2020—2024年验证；--start和--years可修改。旧流程保留作基础工具和对照，新研究入口为根目录 run.py temporal。
+
+早期论文不要求研究电解质，也不要求出现离子输运词。可以搜索分离膜、涂层、柔性材料、自修复聚合物等领域。LLM须说明从原性质迁移到电解质的具体分子层面理由。电子电导率不能直接当离子电导率。
+四维评分：配位潜力、链段运动、盐相容性、结构可实现性，各0—3分，等权求和；缺少支持计0。此分数是迁移潜力，不是S/cm预测。当前候选粒度是一篇文献的一条结构/机制线索，不是跨论文去重后的材料家族。已有电解质来源保留标记，便于与跨领域来源分组比较。
+
+调用例子（独立项目根目录，使用已有.env）：
+python run.py temporal --start 2015 --years 5 --out temporal_runs/run01 --catalog papers.json
+papers.json为JSON数组，每条包含id、year、title、doi、text。text可为摘要或已抽取全文；必须提供可靠出版年份。未知年份不应猜填。模型仅收到白名单来源字段。
+
+在线检索例子：
+python run.py temporal --start 2015 --years 5 --out temporal_runs/online01 --discover "polymer separation membrane" --discover "self healing polymer" --discover "polymer coating" --validate "polymer electrolyte coordination" --validate "solid polymer electrolyte flexible chain" --pages 2
+在线采用OpenAlex分页检索，每个主题最多100*pages条记录；过滤两端日期，保存检索记录。无摘要记录不进入抽取。这是有界检索，不代表覆盖该领域全部论文。可重复--discover/--validate扩展主题。大规模运行前应先用小页数评估API成本；后期匹配当前为候选×论文逐对调用。
+
+工具接口
+harness.py中的definitions()返回function-calling工具定义；TemporalHarness.execute(name, arguments)执行并记录事件。
+search_window(query,phase,max_pages)：按窗口检索。
+extract_source(paper)：只接受早期来源，提取有原文引文的候选。
+freeze_ranking()：保存排名、评分规则、来源哈希；之后禁止改早期候选。
+validate_later(paper)：只接受后期来源，分别记录结构exact/similar/none/uncertain与机制supported/none/uncertain，正匹配必须有后期原文引用。
+report()：输出每个早期排名及其后期电解质支持。
+run.py目前使用确定性阶段调度，LLM负责提取、迁移评估、匹配。总控agent也可按definitions调用这些工具，时间门禁由代码执行。
+
+存储
+state.json：可恢复的研究状态，来源/候选/后期匹配分区保存。
+frozen_ranking.json：只含早期证据的冻结排名。
+search_*.json：检索批次。
+events.jsonl：工具调用和结果。
+report.json：后期验证结果。没找到记作not_found_in_retrieved_corpus，不当作材料失败。正匹配标记unreviewed，需人工语义审核；引文匹配只验证出处。
+
+方法边界
+这是时间分窗回溯发现。现代LLM可能预训练见过后期文献，因此仅隔离输入不能证明历史盲预测。不能把结构/机制相似解释为后期作者受早期论文启发。后期评价不得回写早期排名；修改评分必须另建输出目录。HPG数值预测暂不进入主排序：现有PEO对照已显示明显偏差，也不覆盖广泛跨领域结构。
+
+本次测试：python -m unittest discover -s temporal_harness -p test_temporal.py
+测试采用明确的合成fixture和假LLM，验证时窗、冻结、引文、状态恢复和未知结果语义；不是新文献实验结果。

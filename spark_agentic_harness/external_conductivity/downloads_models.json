@@ -1,0 +1,76 @@
+[
+  {
+    "url": "https://raw.githubusercontent.com/PEESEgroup/SCAN/main/route_model.py",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/PEESEgroup/SCAN/main/model/MFNet.py",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/PEESEgroup/SCAN/main/data/salt_features.npy",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/PEESEgroup/SCAN/main/data/solvent_features.npy",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/PEESEgroup/SCAN/main/data/condition_features.npy",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/PEESEgroup/SCAN/main/trained_pth_model/MFNet_fold_1_model.pth",
+    "path": "spark_agentic_harness\\external_conductivity\\SCAN\\trained_pth_model\\MFNet_fold_1_model.pth",
+    "bytes": 35587,
+    "sha256": "d2ee44cbd5015021e7519f2e89a828315c6c44a52c1f05770c91acc98d80abbc"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/PEESEgroup/SCAN/main/LICENSE",
+    "path": "spark_agentic_harness\\external_conductivity\\SCAN\\LICENSE",
+    "bytes": 11357,
+    "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/spark8ku/HPG/main/src/hpggat.py",
+    "path": "spark_agentic_harness\\external_conductivity\\HPG\\src\\hpggat.py",
+    "bytes": 8893,
+    "sha256": "78a7d8fbc4f9da410e594aa3c2d9e8a174c4ea252548f5e3063a79efd8558760"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/spark8ku/HPG/main/src/polyG.py",
+    "path": "spark_agentic_harness\\external_conductivity\\HPG\\src\\polyG.py",
+    "bytes": 6116,
+    "sha256": "c6de362ac1ba12891d790d2971e5ed1908a9e315f18f8d226ede8941201a3f32"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/spark8ku/HPG/main/src/mol2graph.py",
+    "path": "spark_agentic_harness\\external_conductivity\\HPG\\src\\mol2graph.py",
+    "bytes": 4510,
+    "sha256": "f8ce0e6169735eeff97fe86758d4636f944af2d3d8ec8c293f0fcf631b5c450a"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/spark8ku/HPG/main/src/smiles_utils.py",
+    "path": "spark_agentic_harness\\external_conductivity\\HPG\\src\\smiles_utils.py",
+    "bytes": 3370,
+    "sha256": "a1e6e416587389880d7d66ad499285bd5cfbe4d493d0b118fbf146b2c124ba5f"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/spark8ku/HPG/main/data/processed_electrolytes.csv",
+    "path": "spark_agentic_harness\\external_conductivity\\HPG\\data\\processed_electrolytes.csv",
+    "bytes": 1557257,
+    "sha256": "e23376d65daf338b8a85f1f8efcb3696ec855fd3861d44748c70615ad428d02f"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/spark8ku/HPG/main/ckpt/HPG_GAT.bin",
+    "path": "spark_agentic_harness\\external_conductivity\\HPG\\ckpt\\HPG_GAT.bin",
+    "bytes": 3752417,
+    "sha256": "0f859f11015f77ab9d49a0807db24f6e1c31c5c3b4be47b01d8bda7b53bf6f38"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/spark8ku/HPG/main/LICENSE",
+    "path": "spark_agentic_harness\\external_conductivity\\HPG\\LICENSE",
+    "bytes": 1065,
+    "sha256": "c6d446f4c17d7627d690786c9038be4dc61c06f5dda0e15a86f2b29041013008"
+  }
+]

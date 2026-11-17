@@ -1,0 +1,68 @@
+[
+  {
+    "url": "https://raw.githubusercontent.com/learningmatter-mit/Chem-prop-pred/main/data/clean_train_data.csv",
+    "path": "spark_agentic_harness\\external_conductivity\\Chem-prop-pred\\data\\clean_train_data.csv",
+    "bytes": 1124553,
+    "sha256": "6b6de5979e2b0fe592e9c75b98cdccc6a77c579bd9332e3633301f6f6392ca74"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/learningmatter-mit/Chem-prop-pred/main/chemproppred/make_balanced_train.py",
+    "path": "spark_agentic_harness\\external_conductivity\\Chem-prop-pred\\chemproppred\\make_balanced_train.py",
+    "bytes": 5939,
+    "sha256": "061526ea51639e4a393bae419b71ecafeb7f98375b9a1ca06c4d804c6cfff5e2"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/learningmatter-mit/Chem-prop-pred/main/README.md",
+    "path": "spark_agentic_harness\\external_conductivity\\Chem-prop-pred\\README.md",
+    "bytes": 2712,
+    "sha256": "66e5b8048a93463677494e384d46c6cef389907dcc33b8110c2ef6f2cba76d64"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/learningmatter-mit/Chem-prop-pred/main/LICENSE",
+    "path": "spark_agentic_harness\\external_conductivity\\Chem-prop-pred\\LICENSE",
+    "bytes": 1078,
+    "sha256": "1d26ef5390c488034310b52f97246c50fb50530c0800b714e2a8f7402eee5aab"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/PEESEgroup/SCAN/main/examples/MFNpredict.py",
+    "path": "spark_agentic_harness\\external_conductivity\\SCAN\\examples\\MFNpredict.py",
+    "bytes": 754,
+    "sha256": "a41c71aa4216ec823ca9db51a21bfa88ef0b2e4dfc3fc612ff3fb9f8b1a02f34"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/PEESEgroup/SCAN/main/descriptor.py",
+    "path": "spark_agentic_harness\\external_conductivity\\SCAN\\descriptor.py",
+    "bytes": 8231,
+    "sha256": "350c6e7392291747b71b27a6090bd809d751459c6a5ce25c5d435d8e1729743d"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/PEESEgroup/SCAN/main/README.md",
+    "path": "spark_agentic_harness\\external_conductivity\\SCAN\\README.md",
+    "bytes": 4875,
+    "sha256": "4ec9654ccac15e091b19f15464b92a2b6903062bf1f33f34d7b2c4634f29c406"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/spark8ku/HPG/main/HPG_GAT.ipynb",
+    "path": "spark_agentic_harness\\external_conductivity\\HPG\\HPG_GAT.ipynb",
+    "bytes": 43433,
+    "sha256": "2d3008cf50fffd66259904a6ddecf952f38de894a15c202d3a51320525c589cd"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/spark8ku/HPG/main/preprocessing.ipynb",
+    "path": "spark_agentic_harness\\external_conductivity\\HPG\\preprocessing.ipynb",
+    "bytes": 2110,
+    "sha256": "8dde5f878c3ce55cc4b17b4b03a4dd081614083f0245f79924cf3eeae3511800"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/spark8ku/HPG/main/requirements.txt",
+    "path": "spark_agentic_harness\\external_conductivity\\HPG\\requirements.txt",
+    "bytes": 122,
+    "sha256": "787cd20cbeb9f45ceb1cd3defba35c3390ca67207bdbd12a845ed78b008f860f"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/spark8ku/HPG/main/README.md",
+    "path": "spark_agentic_harness\\external_conductivity\\HPG\\README.md",
+    "bytes": 394,
+    "sha256": "f31fd693f1c34e50f2cbdf8930926dbb9ff9b0e3e1ab3686c0df8da048a7dc90"
+  }
+]
