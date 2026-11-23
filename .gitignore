@@ -47,3 +47,13 @@ venv/
 *.bin
 *.ckpt
 *.npz
+
+# Five-window input snapshots, model receipts and local experiment outputs
+/Polymer_Agentic_Ranking_Harness/runs/
+/Polymer_Agentic_Ranking_Harness/original_ranking_check.json
+/Polymer_Adoption_Harness/data/
+/Polymer_Adoption_Harness/runs/
+/SPARK_Evidence_Transfer_Harness_v6/data/
+/SPARK_Full_Transfer_20261120/runs/
+/Electrolyte_Harness_20261117/
+.writer

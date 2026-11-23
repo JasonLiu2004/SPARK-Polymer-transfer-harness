@@ -1,0 +1,6 @@
+# The registered run hashes source bytes, including line endings.
+/Polymer_Agentic_Ranking_Harness/** text eol=lf
+/Polymer_Adoption_Harness/** text eol=lf
+/SPARK_Motif_Transfer_Harness_v4/harness/** text eol=lf
+# This one registered entry point was originally written with CRLF.
+/Polymer_Agentic_Ranking_Harness/run_paratera.py -text whitespace=cr-at-eol
