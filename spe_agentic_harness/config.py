@@ -2,7 +2,7 @@
 import os
 from pathlib import Path
 
-ALLOWED = {'LLM_API_KEY', 'LLM_BASE_URL', 'LLM_MODEL', 'OPENALEX_API_KEY'}
+ALLOWED = {'LLM_API_KEY', 'LLM_BASE_URL', 'LLM_MODEL', 'OPENALEX_API_KEY', 'PARATERA_API_KEY'}
 
 
 def load_env(path=None):
